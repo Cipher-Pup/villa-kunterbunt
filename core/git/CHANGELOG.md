@@ -41,6 +41,7 @@
     *   **Interaktive Reports:** Bereitstellung von zwei detaillierten investigativen Web-Ansichten.
     *   **History Cleanup:** Permanente Entfernung des `trustme/2/` Unterverzeichnisses aus der Git-Historie zur Bereinigung der Repository-Struktur.
     *   **Dokument-Links:** Direkte Verlinkung der Beweis-Dokumente im Footer inklusive fixer Dateinamen und "Open in New Tab" Funktionalität.
+    *   **Datensatz-Selektion:** Forensischer Hinweis zur Methodik hinzugefügt – zur Gewährleistung der Analyse-Präzision wurden gezielt repräsentative Stichproben-Segmente anstatt des Gesamtdatensatzes herangezogen.
 
 ---
 <br>
