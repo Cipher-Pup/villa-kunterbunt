@@ -28,6 +28,18 @@
 <br>
 
 
+## v.1.2.4 (Investigative Update)
+### "The Trustpilot Chronicles"
+*10. Februar 2026*
+
+> **Status:** Veröffentlichung der "Trustpilot-Akte" (Investigativ-Analysen) abgeschlossen.
+
+#### 🕵️ Investigative Reports
+*   **Trustpilot Analyse (E.ON):** Hinzufügung forensischer Analysen der Trustpilot-Bewertungen in `trustme/`.
+    *   **Qualitative Analyse:** Untersuchung der Diskrepanz zwischen eingeladenen 5-Sterne-Bewertungen und organischen Beschwerden.
+    *   **Botting-Detektion:** Visualisierung des "Einladungs-Bias" in der Kundenzufriedenheit.
+    *   **Interaktive Reports:** Bereitstellung von zwei detaillierten investigativen Web-Ansichten.
+
 ---
 <br>
 

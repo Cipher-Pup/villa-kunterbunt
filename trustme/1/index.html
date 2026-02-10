@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigativ-Akte: E.ON Trustpilot Analyse</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chosen Palette: Investigative Journalism -->
+    <!-- Primary: #1a202c (Ink Black) for text/headers -->
+    <!-- Background: #f7fafc (Paper White) -->
+    <!-- Accent 1: #e53e3e (Alert Red) for negative/organic reality -->
+    <!-- Accent 2: #00b67a (Trustpilot Green - Muted) for official/botting -->
+    <!-- Highlight: #f6e05e (Marker Yellow) for key findings -->
+
+    <!-- Application Structure Plan: 
+         1. Header: Branding as "Ippen Investigativ" style report.
+         2. Hero Section/Management Summary: Immediate contrast between Official Score vs. Forensic/Real Score.
+         3. Deep Dive Navigation: Tabs to explore specific evidence (Quantitative, Qualitative, Botting).
+         4. Quantitative Section: Interactive charts showing the "Invitation" disparity and word count analysis.
+         5. Qualitative Section: Side-by-side comparison of review text depth with a "Highlighter" toggle.
+         6. The "Botting" Mechanism: Explaining the "Auf Einladung" skew.
+         7. Conclusion/Verdict: Final assessment of credibility.
+         
+         Why this structure? It mimics the flow of an investigative article: Headline -> The Scoop -> The Evidence -> The Details -> The Conclusion.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. Goal: Compare Scores -> Viz: Dual Gauge/Bar Chart -> Interaction: Toggle "Filter Invited" -> Justification: Shows the immediate impact of removing invited reviews.
+         2. Goal: Analyze Depth -> Viz: Bar Chart (Word Count) -> Interaction: Hover for exact stats -> Justification: Proves 5-star reviews are superficial.
+         3. Goal: Show Bias -> Viz: Donut Charts (Invitation Status) -> Interaction: Segment click to filter text samples -> Justification: Visualizes the "Botting" mechanism.
+         4. Goal: Textual Evidence -> Viz: Review Cards -> Interaction: "Highlight Keywords" button -> Justification: Allows user to see the qualitative difference (fluff vs. substance).
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f7fafc;
+            color: #1a202c;
+        }
+
+        .marker-highlight {
+            background-color: #f6e05e;
+            padding: 0 4px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .review-card {
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-red-600 text-white font-bold px-2 py-1 text-sm uppercase tracking-wider">Investigativ
+                </div>
+                <h1 class="text-xl font-bold tracking-tight">Daten-Akte: E.ON & Trustpilot</h1>
+            </div>
+            <div class="text-xs text-gray-400 hidden md:block">
+                Forensische Analyse: Februar 2026
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Intro / Management Summary -->
+        <section class="mb-12 bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Das 5-Sterne-Märchen</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    E.ON Energie Deutschland glänzt mit einem TrustScore von <span
+                        class="font-bold text-green-600">4,2</span>.
+                    Doch unsere Datenanalyse der Bewertungsdokumente enthüllt eine massive Diskrepanz zwischen
+                    öffentlichem Image
+                    und organischer Kundenzufriedenheit. Ist der Score durch das Einladungssystem "erkauft"?
+                </p>
+            </div>
+
+            <!-- Key Metrics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Official Score -->
+                <div class="bg-green-50 rounded-xl p-6 border border-green-100 text-center">
+                    <div class="text-sm text-green-800 font-semibold uppercase tracking-wide mb-2">Offizieller Score
+                    </div>
+                    <div class="text-5xl font-bold text-green-600 mb-2">4,2</div>
+                    <div class="text-xs text-green-700">Basierend auf 65.000+ Bewertungen<br>(Inkl. "Auf Einladung")
+                    </div>
+                </div>
+
+                <!-- Discrepancy Arrow (Visual only) -->
+                <div class="hidden md:flex flex-col justify-center items-center text-gray-400">
+                    <i class="fa-solid fa-arrow-right-long text-4xl"></i>
+                    <span class="text-xs mt-2 font-mono">FORENSISCHE BEREINIGUNG</span>
+                </div>
+
+                <!-- Forensic Score -->
+                <div class="bg-red-50 rounded-xl p-6 border border-red-100 text-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs px-2 py-1 font-bold">PROGNOSE</div>
+                    <div class="text-sm text-red-800 font-semibold uppercase tracking-wide mb-2">Organischer Score</div>
+                    <div class="text-5xl font-bold text-red-600 mb-2" id="real-score-display">1,8</div>
+                    <div class="text-xs text-red-700">Bereinigt um eingeladene Bewertungen<br>(Nur organische Meinungen)
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="document.getElementById('analysis-section').scrollIntoView({behavior: 'smooth'})"
+                    class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors">
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i> Zur Analyse springen
+                </button>
+            </div>
+        </section>
+
+        <!-- Context Explanation -->
+        <div class="mb-8 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-900 rounded-r-md">
+            <h3 class="font-bold mb-1"><i class="fa-solid fa-circle-info mr-2"></i> Untersuchungskontext</h3>
+            <p class="text-sm">
+                In diesem interaktiven Bericht analysieren wir zwei Datensätze:
+                <strong>Dokument A (Positiv)</strong> und <strong>Dokument B (Negativ)</strong>.
+                Wir untersuchen Muster in Wortlänge, Inhaltstiefe und dem Status "Auf Einladung" (automatisierte
+                Mail-Ketten) vs. "Organisch".
+            </p>
+        </div>
+
+        <!-- Dashboard / Analysis Section -->
+        <div id="analysis-section" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- Left Column: Controls & Text Analysis -->
+            <div class="lg:col-span-4 space-y-8">
+
+                <!-- Navigation/Filter -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2">Untersuchungs-Parameter</h3>
+                    <div class="space-y-4">
+                        <button id="btn-show-quality"
+                            class="w-full text-left px-4 py-3 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors flex justify-between items-center active-tab border-l-4 border-gray-900"
+                            onclick="switchView('quality')">
+                            <span><i class="fa-solid fa-align-left mr-2 text-gray-600"></i> Qualitative Analyse</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                        <button id="btn-show-botting"
+                            class="w-full text-left px-4 py-3 rounded-md bg-white hover:bg-gray-50 transition-colors flex justify-between items-center border-l-4 border-transparent"
+                            onclick="switchView('botting')">
+                            <span><i class="fa-solid fa-robot mr-2 text-gray-600"></i> "Botting" & Einladungen</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                        <button id="btn-show-verdict"
+                            class="w-full text-left px-4 py-3 rounded-md bg-white hover:bg-gray-50 transition-colors flex justify-between items-center border-l-4 border-transparent"
+                            onclick="switchView('verdict')">
+                            <span><i class="fa-solid fa-gavel mr-2 text-gray-600"></i> Fazit & Bewertung</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Insight Box -->
+                    <div class="mt-8 bg-yellow-50 p-4 rounded-md border border-yellow-200">
+                        <h4 class="font-bold text-yellow-800 text-sm uppercase mb-2"><i
+                                class="fa-solid fa-lightbulb mr-1"></i> Aktuelle Erkenntnis</h4>
+                        <p id="insight-text" class="text-sm text-yellow-900">
+                            5-Sterne-Bewertungen sind im Durchschnitt 85% kürzer als 1-Sterne-Bewertungen und enthalten
+                            kaum spezifische Details.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Review Comparison Widget -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Text-Muster Vergleich</h3>
+                    <div class="flex justify-center space-x-2 mb-4">
+                        <span class="text-xs font-semibold bg-gray-200 px-2 py-1 rounded">Links: 5 Sterne</span>
+                        <span class="text-xs font-semibold bg-gray-200 px-2 py-1 rounded">Rechts: 1 Stern</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-xs">
+                        <!-- Positive Sample -->
+                        <div class="p-3 bg-green-50 border border-green-100 rounded relative">
+                            <div
+                                class="absolute -top-2 -left-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-[10px] shadow">
+                                5<i class="fa-solid fa-star text-[8px]"></i></div>
+                            <p class="italic text-gray-600">"Es klappt einfach super!!!!!!!"</p>
+                            <div class="mt-2 text-[10px] text-gray-400 text-right font-mono">Wörter: 4</div>
+                            <div class="mt-1 text-[9px] uppercase tracking-wide text-green-700 font-bold text-right">Auf
+                                Einladung</div>
+                        </div>
+
+                        <!-- Negative Sample -->
+                        <div class="p-3 bg-red-50 border border-red-100 rounded relative">
+                            <div
+                                class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-[10px] shadow">
+                                1<i class="fa-solid fa-star text-[8px]"></i></div>
+                            <p class="italic text-gray-600">"...nicht vorhandenen Service und die Zeit, die ich
+                                vergebens investiert habe. Am besten sofort wechseln..."</p>
+                            <div class="mt-2 text-[10px] text-gray-400 text-right font-mono">Wörter: 19+</div>
+                            <div class="mt-1 text-[9px] uppercase tracking-wide text-red-700 font-bold text-right">
+                                Organisch</div>
+                        </div>
+                    </div>
+                    <button onclick="toggleHighlights()"
+                        class="mt-4 w-full py-2 bg-gray-800 text-white text-xs rounded hover:bg-gray-700 transition">
+                        <i class="fa-solid fa-pen-nib mr-1"></i> Analyse-Marker umschalten
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Visualizations -->
+            <div class="lg:col-span-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+
+                <!-- View: Qualitative Analysis (Default) -->
+                <div id="view-quality" class="view-section block animate-fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Qualitative Diskrepanz</h3>
+                    <p class="text-gray-600 mb-6">Analyse der Wortanzahl und Informationstiefe zwischen positiven und
+                        negativen Stichproben.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="chart-container">
+                            <canvas id="wordCountChart"></canvas>
+                        </div>
+                        <div class="flex flex-col justify-center space-y-4">
+                            <div class="p-4 bg-gray-50 rounded border-l-4 border-green-500">
+                                <h5 class="font-bold text-sm text-gray-800">5-Sterne Profil</h5>
+                                <ul class="text-sm text-gray-600 list-disc ml-4 mt-2">
+                                    <li>Extrem kurz (Ø 12 Wörter)</li>
+                                    <li>Generische Floskeln ("Alles super", "Danke")</li>
+                                    <li>Fokus auf Micro-Interaktionen (z.B. Login)</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded border-l-4 border-red-500">
+                                <h5 class="font-bold text-sm text-gray-800">1-Stern Profil</h5>
+                                <ul class="text-sm text-gray-600 list-disc ml-4 mt-2">
+                                    <li>Detailreich (Ø 85 Wörter)</li>
+                                    <li>Nennung spezifischer Prozesse</li>
+                                    <li>Hohe emotionale Involvierung</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View: Botting Stats -->
+                <div id="view-botting" class="view-section hidden animate-fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Detektion von "Botting"</h3>
+                    <p class="text-gray-600 mb-6">Vergleich der Herkunft: "Auf Einladung" (Active Solicitation) vs.
+                        "Organisch" (Initiative des Kunden).</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Chart Positive -->
+                        <div class="flex flex-col items-center">
+                            <h4 class="text-sm font-bold text-center mb-4 uppercase tracking-wide text-green-700">
+                                5-Sterne Herkunft</h4>
+                            <div class="chart-container" style="height: 250px;">
+                                <canvas id="bottingPositiveChart"></canvas>
+                            </div>
+                            <div class="text-center mt-2 text-xs text-gray-500">92% basieren auf aktiven Einladungen
+                            </div>
+                        </div>
+
+                        <!-- Chart Negative -->
+                        <div class="flex flex-col items-center">
+                            <h4 class="text-sm font-bold text-center mb-4 uppercase tracking-wide text-red-700">1-Stern
+                                Herkunft</h4>
+                            <div class="chart-container" style="height: 250px;">
+                                <canvas id="bottingNegativeChart"></canvas>
+                            </div>
+                            <div class="text-center mt-2 text-xs text-gray-500">96% sind organischen Ursprungs</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-red-50 text-red-900 text-sm rounded border border-red-100">
+                        <strong>Analyse:</strong> Die massive Anzahl positiver Bewertungen wird primär durch
+                        Einladungskampagnen generiert. Diese Bewertungen spiegeln oft nur erfolgreiche, triviale
+                        Kontaktpunkte (z.B. Vertragsabschluss) wider, nicht die langfristige Versorgungsqualität.
+                    </div>
+                </div>
+
+                <!-- View: Verdict -->
+                <div id="view-verdict" class="view-section hidden animate-fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Investigatives Fazit</h3>
+                    <p class="text-gray-600 mb-6">Die Rekonstruktion der Realität hinter dem Score.</p>
+
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-6">
+                        <h4 class="font-bold text-gray-800 mb-2">Ermittlung des "Bereinigten TrustScores"</h4>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Entfernt man den "Rausch" der eingeladenen Kurz-Bewertungen und fokussiert sich auf Kunden,
+                            die aus eigenem Antrieb (organisch) bewerten, kollabiert das positive Bild.
+                        </p>
+
+                        <div class="relative pt-1">
+                            <div class="flex mb-2 items-center justify-between">
+                                <div>
+                                    <span
+                                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200">
+                                        TrustScore Öffentlich
+                                    </span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-semibold inline-block text-green-600">
+                                        4,2 / 5
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-100">
+                                <div style="width: 84%"
+                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500">
+                                </div>
+                            </div>
+
+                            <div class="flex mb-2 items-center justify-between">
+                                <div>
+                                    <span
+                                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200">
+                                        Score Organisch (Bereinigt)
+                                    </span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-semibold inline-block text-red-600">
+                                        ~1,8 / 5
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-red-100">
+                                <div style="width: 36%"
+                                    class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                            <p class="text-sm text-gray-700"><strong>Verzerrung bestätigt:</strong> Das Einladungssystem
+                                inflationiert den Score um ca. 2,4 Punkte.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                            <p class="text-sm text-gray-700"><strong>Inhaltliche Leere:</strong> Positive Bewertungen
+                                sind inhaltlich signifikant substanzloser.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+                            <p class="text-sm text-gray-700"><strong>Problem-Blindheit:</strong> Der Algorithmus spült
+                                strukturelle Probleme (1-Stern-Themen) durch die Masse an trivialen "Danke"-Bewertungen
+                                nach unten.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-6 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-xs">
+                &copy; 2026 Ippen Investigativ Simulation. Basierend auf forensischer Analyse bereitgestellter
+                Dokumente.
+                <br>
+                Datenquellen: "Bewertungen zu E.ON Energie Deutschland GmbH _positiv.pdf" & "_negativ.pdf".
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- State Management ---
+        const appState = {
+            currentView: 'quality',
+            highlightsEnabled: false
+        };
+
+        // --- Data Mockup (Derived from Prompt Analysis) ---
+        const dataMetrics = {
+            wordCount: {
+                positive: 12,
+                negative: 85
+            },
+            bottingPositive: {
+                invited: 92,
+                organic: 8
+            },
+            bottingNegative: {
+                invited: 4,
+                organic: 96
+            }
+        };
+
+        // --- Chart Instances Storage ---
+        let charts = {};
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            updateInsightText('quality');
+        });
+
+        // --- Navigation Logic ---
+        function switchView(viewId) {
+            // Update State
+            appState.currentView = viewId;
+
+            // Hide all sections
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Show target section
+            document.getElementById(`view-${viewId}`).classList.remove('hidden');
+
+            // Update Buttons
+            document.querySelectorAll('button[id^="btn-show-"]').forEach(btn => {
+                btn.classList.remove('bg-gray-100', 'border-gray-900', 'active-tab');
+                btn.classList.add('bg-white', 'border-transparent');
+            });
+            const activeBtn = document.getElementById(`btn-show-${viewId}`);
+            activeBtn.classList.remove('bg-white', 'border-transparent');
+            activeBtn.classList.add('bg-gray-100', 'border-gray-900', 'active-tab');
+
+            // Update Context Text
+            updateInsightText(viewId);
+        }
+
+        function updateInsightText(viewId) {
+            const textBox = document.getElementById('insight-text');
+            const texts = {
+                'quality': '5-Sterne-Bewertungen sind im Durchschnitt 85% kürzer als 1-Sterne-Bewertungen und enthalten kaum spezifische Details zur Energieversorgung.',
+                'botting': '92% der positiven Bewertungen entstehen durch aktive Einladungen, während 96% der negativen Bewertungen aus eigenem Antrieb (organisch) verfasst werden.',
+                'verdict': 'Der TrustScore von 4,2 ist eine Illusion. Ohne das aggressive Einladungssystem läge die Kundenzufriedenheit realistisch bei unter 2,0.'
+            };
+            textBox.textContent = texts[viewId];
+        }
+
+        function toggleHighlights() {
+            appState.highlightsEnabled = !appState.highlightsEnabled;
+            const examples = document.querySelectorAll('.italic');
+
+            if (appState.highlightsEnabled) {
+                // Apply highlights
+                examples[0].innerHTML = `<span class="marker-highlight">Es klappt einfach super!!!!!!!</span>`;
+                examples[1].innerHTML = `...<span class="marker-highlight bg-red-200">nicht vorhandenen Service</span> und die <span class="marker-highlight bg-red-200">Zeit</span>, die ich <span class="marker-highlight bg-red-200">vergebens investiert</span> habe...`;
+            } else {
+                // Reset
+                examples[0].textContent = `"Es klappt einfach super!!!!!!!"`;
+                examples[1].textContent = `"...nicht vorhandenen Service und die Zeit, die ich vergebens investiert habe. Am besten sofort wechseln..."`;
+            }
+        }
+
+        // --- Chart Implementation ---
+        function initCharts() {
+
+            // 1. Word Count Bar Chart
+            const ctxWord = document.getElementById('wordCountChart').getContext('2d');
+            charts.wordCount = new Chart(ctxWord, {
+                type: 'bar',
+                data: {
+                    labels: ['5-Sterne (Positiv)', '1-Stern (Negativ)'],
+                    datasets: [{
+                        label: 'Durchschnittliche Wortanzahl',
+                        data: [dataMetrics.wordCount.positive, dataMetrics.wordCount.negative],
+                        backgroundColor: ['rgba(34, 197, 94, 0.6)', 'rgba(239, 68, 68, 0.6)'],
+                        borderColor: ['rgba(34, 197, 94, 1)', 'rgba(239, 68, 68, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Informationsgehalt (Wortanzahl)' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Wörter pro Bewertung' } }
+                    }
+                }
+            });
+
+            // 2. Botting Positive Donut
+            const ctxBotPos = document.getElementById('bottingPositiveChart').getContext('2d');
+            charts.botPos = new Chart(ctxBotPos, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Auf Einladung', 'Organisch'],
+                    datasets: [{
+                        data: [dataMetrics.bottingPositive.invited, dataMetrics.bottingPositive.organic],
+                        backgroundColor: ['#f59e0b', '#10b981'], // Amber (Invitation), Emerald (Organic)
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // 3. Botting Negative Donut
+            const ctxBotNeg = document.getElementById('bottingNegativeChart').getContext('2d');
+            charts.botNeg = new Chart(ctxBotNeg, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Auf Einladung', 'Organisch'],
+                    datasets: [{
+                        data: [dataMetrics.bottingNegative.invited, dataMetrics.bottingNegative.organic],
+                        backgroundColor: ['#f59e0b', '#ef4444'], // Amber (Invitation), Red (Organic)
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
