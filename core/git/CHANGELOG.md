@@ -39,7 +39,10 @@
     *   **Inhalt:** Analyse der "Intellectual Denial of Service" Strategie und des technischen Widerstands via GitHub.
     *   **Audio:** Vollständige Hifi-Metadaten-Integration und TLEN-Tagging (6:13).
     *   **Navigation:** Vernetzung mit E04 und Integration in den Meta-Index.
-*   **UI/UX Refinement:** Überarbeitung der Button-Layouts und Abstände für ein konsistentes Premium-Erlebnis.
+*   **UI/UX Refinement:** 
+    *   Überarbeitung der Button-Layouts und Abstände für ein konsistentes Premium-Erlebnis.
+    *   **Text-Alignment-Standardisierung:** Vereinheitlichung der Textausrichtung (Beschreibungen zentriert, TSS-Info linksbündig) über das gesamte Meta-Portal.
+    *   **Link-Fix (Index):** Umstellung der Fork-Links von Repositories auf GitHub-Pages-URLs für direkten Zugriff auf die Live-Demos.
 *   **Mobile Widget:** Optimierung der iPhone-Player-Anzeige durch synchronisierte Audiobook-Cover-Metadaten.
 
 ---
