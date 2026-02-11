@@ -54,6 +54,7 @@
 *   **Content Patch (E03 Meta):** Aktualisierung der Quellenverlinkung für die Trustpilot-Analyse auf den spezifischen Enthüllungsbericht (Einzelseite & Index).
 *   **Link-Fix (Index):** Umstellung der Fork-Links von Repositories auf GitHub-Pages-URLs für direkten Zugriff auf die Live-Demos.
 *   **Mobile Widget:** Optimierung der iPhone-Player-Anzeige durch synchronisierte Audiobook-Cover-Metadaten.
+*   **E04 Metadata Fix:** Korrektur fehlerhafter Episoden-Metadaten (Titel/Album) für Episode 04 im Index-Portal und auf der Einzelseite zur Behebung der Fehl-Anzeige auf mobilen Geräten (iPhone Widget).
 
 ---
 <br>
