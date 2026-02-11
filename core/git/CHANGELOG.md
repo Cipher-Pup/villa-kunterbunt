@@ -47,7 +47,12 @@
     *   **TTS-Sync (Index):** Synchronisierung des Infotextes für Episode 05 im Hauptindex.
     *   **Podcast Episode 06:** Release von "Die Villa Kunterbunt Studie" inklusive Audio-Metadaten-Sync und Einzelseite.
     *   **Navigation:** Aktivierung des "Nächste Episode" Buttons in E05 und Metadaten-Fix für das iPhone-Widget.
-    *   **Link-Fix (Index):** Umstellung der Fork-Links von Repositories auf GitHub-Pages-URLs für direkten Zugriff auf die Live-Demos.
+    *   **Button-Global-Standardisierung:** Einführung einheitlicher "Repo"- und "Quelle"-Buttons über alle Podcast-Bereiche (`Main`, `Cowork`, `Meta`).
+    *   **Meta-Portal:** Alle 6 Episoden inklusive Index verfügen nun über direkten Repo-Zugriff.
+    *   **Main & Cowork:** Nachrüstung der "Repo"-Buttons in Indizes und Einzelseiten.
+    *   **Branding:** Konsequente Nutzung des grünen `has-source` Stylings für alle Ressourcen-Links.
+*   **Content Patch (E03 Meta):** Aktualisierung der Quellenverlinkung für die Trustpilot-Analyse auf den spezifischen Enthüllungsbericht.
+*   **Link-Fix (Index):** Umstellung der Fork-Links von Repositories auf GitHub-Pages-URLs für direkten Zugriff auf die Live-Demos.
 *   **Mobile Widget:** Optimierung der iPhone-Player-Anzeige durch synchronisierte Audiobook-Cover-Metadaten.
 
 ---
