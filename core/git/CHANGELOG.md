@@ -46,6 +46,8 @@
         *   Podcast-Indizes (Main, Meta, Cowork): Alle Kurzbeschreibungen linksbündig.
     *   **TTS-Sync (Index):** Synchronisierung des Infotextes für Episode 05 im Hauptindex.
     *   **Podcast Episode 06:** Release von "Die Villa Kunterbunt Studie" inklusive Audio-Metadaten-Sync und Einzelseite.
+    *   **Metadata Enhancement (E06):** Nachträgliche Einbettung des Cover-Art (400x400 PNG, 311KB) in `villa_kunterbunt_die_studie_podcast.mp3` zur Konsistenz mit allen anderen Episoden. Integration über `embed_metadata.py`.
+    *   **Translation READMEs:** Fix der Illustration-Rendering-Probleme in `core/git/translations/README_*.md` durch Umstellung von GitHub-Pages-URLs auf `raw.githubusercontent.com` für `villa_kunterbunt_040.png` (DE, DE2, EN).
     *   **Navigation:** Aktivierung des "Nächste Episode" Buttons in E05 und Metadaten-Fix für das iPhone-Widget.
     *   **Button-Global-Standardisierung:** Einführung einheitlicher "Repo"- und "Quelle"-Buttons über alle Podcast-Bereiche (`Main`, `Cowork`, `Meta`).
     *   **Meta-Portal:** Alle 6 Episoden inklusive Index verfügen nun über direkten Repo-Zugriff.

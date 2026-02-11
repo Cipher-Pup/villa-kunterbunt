@@ -124,8 +124,8 @@ Für die technisch Interessierten (und die Zweifler im Callcenter):
 Eine visuelle Reise durch den Wahnsinn. Hier finden Sie alle Memes und Illustrationen gesammelt in einer Galerie.
 
 <div align="center">
-  <a href="https://derlemue.github.io/villa-kunterbunt/core/data/main/illustrations/villa_kunterbunt_040.png">
-    <img src="https://derlemue.github.io/villa-kunterbunt/core/data/main/illustrations/villa_kunterbunt_040.png" width="50%" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+  <a href="https://raw.githubusercontent.com/derlemue/villa-kunterbunt/refs/heads/main/core/data/main/illustrations/villa_kunterbunt_040.png">
+    <img src="https://raw.githubusercontent.com/derlemue/villa-kunterbunt/refs/heads/main/core/data/main/illustrations/villa_kunterbunt_040.png" width="50%" style="border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
   </a>
 </div>
 

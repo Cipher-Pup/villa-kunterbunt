@@ -102,3 +102,12 @@ if __name__ == "__main__":
         "Villa Kunterbunt",
         "Das Kompendium"
     )
+
+    # 8. Meta E06
+    embed_metadata(
+        os.path.join(base_dir, "meta/audio/villa_kunterbunt_die_studie_podcast.mp3"),
+        os.path.join(base_dir, "meta/images/thumbs/das_villa_kunterbunt_kompendium_audiobook_cover_front_thumb.png"),
+        "E06: Die Villa Kunterbunt Studie",
+        "Villa Kunterbunt",
+        "Das Kompendium"
+    )
