@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villa Kunterbunt | Das Dossier (E05)</title>
+    <title>Villa Kunterbunt | E06: Die Villa Kunterbunt Studie</title>
     <link rel="icon" type="image/png" href="../../../website/data/main/images/favicon.png">
 
     <!-- SEO / Social Media -->
-    <meta property="og:title" content="Die Villa Kunterbunt | E05: Das Dossier">
+    <meta property="og:title" content="Die Villa Kunterbunt | E06: Die Villa Kunterbunt Studie">
     <meta property="og:description"
-        content="Was passiert, wenn ein Tech-Profi im Dunkeln sitzt und der Energieversorger nicht reagiert?">
+        content="Was passiert, wenn ein IT-Systemadministrator mit ausgeprägtem Hang zur Logik auf einen defekten Hausanschluss trifft? Eine Eskalation epischen Ausmaßes.">
     <meta property="og:image"
         content="../images/thumbs/das_villa_kunterbunt_kompendium_audiobook_cover_front_thumb.png">
     <link rel="apple-touch-icon"
         href="../images/thumbs/das_villa_kunterbunt_kompendium_audiobook_cover_front_thumb.png">
     <meta name="description"
-        content="Was passiert, wenn ein Tech-Profi im Dunkeln sitzt und der Energieversorger nicht reagiert? Er schreibt keine wütenden Mails. Er eröffnet ein GitHub-Repository. In dieser Episode erzählen wir die unglaubliche Geschichte von 'der Lume'.">
+        content="Was passiert, wenn ein IT-Systemadministrator mit ausgeprägtem Hang zur Logik auf einen defekten Hausanschluss trifft? Eine Eskalation epischen Ausmaßes.">
 
     <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
     <style>
         :root {
             --bg-dark: #0f1115;
@@ -50,7 +51,6 @@
             overflow-x: hidden;
         }
 
-        /* Ambient Background */
         .ambient-bg {
             position: fixed;
             top: 0;
@@ -74,7 +74,6 @@
             flex-grow: 1;
         }
 
-        /* Header Section */
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -102,33 +101,21 @@
             letter-spacing: 1px;
         }
 
-        /* Episode Card */
         .episode-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 24px;
+            padding: 30px;
             box-shadow: var(--shadow-soft);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 15px;
+            gap: 20px;
             animation: fadeInUp 0.8s ease-out;
             position: relative;
-            overflow: hidden;
-        }
-
-        .episode-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
         }
 
         .cover-flip-container {
@@ -157,7 +144,6 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
@@ -186,10 +172,6 @@
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
 
         .episode-description {
@@ -200,189 +182,31 @@
             text-align: center;
         }
 
-        /* Player Controls */
-        .player-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            max-width: 500px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+        .episode-description.collapsed {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .play-btn {
-            background: var(--text-main);
-            color: var(--bg-dark);
+        .read-more-btn {
+            background: none;
             border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .play-btn:hover {
-            background: var(--accent-gold);
-            transform: scale(1.1);
-        }
-
-        .progress-wrapper {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-        }
-
-        .progress-bar-bg {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent-gold);
-            width: 0%;
-            border-radius: 3px;
-            position: relative;
-        }
-
-        .time-display {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .control-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 5px;
-            transition: color 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .control-btn:hover {
-            color: var(--text-main);
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            justify-content: center;
-            margin-top: 5px;
-        }
-
-        .volume-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 80px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            outline: none;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 12px;
-            height: 12px;
-            background: var(--text-muted);
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        /* Navigation Links */
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .nav-link {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .nav-link:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .action-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
             color: var(--accent-gold);
+            cursor: pointer;
             font-size: 0.85rem;
-            font-weight: 500;
+            margin-top: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.2s ease;
-            text-decoration: none;
+            font-weight: 600;
         }
 
-        .action-link:hover {
-            background: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            transform: translateY(-1px);
-            color: #fff;
-        }
-
-        .nav-link.highlight {
-            border-color: rgba(212, 175, 55, 0.3);
-            color: var(--accent-gold);
-        }
-
-        footer {
-            margin-top: 60px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            padding-bottom: 40px;
-        }
-
-        /* Info Toggle */
         .info-bar {
             display: flex;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -413,14 +237,158 @@
             font-size: 0.85rem;
             line-height: 1.5;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-left: 3px solid var(--accent-gold);
-            text-align: left;
+            animation: fadeIn 0.3s ease;
+            text-align: left !important;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .info-text.visible {
             display: block;
-            animation: fadeIn 0.3s ease;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .play-btn {
+            background: var(--text-main);
+            color: var(--bg-dark);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .play-btn:hover {
+            background: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+
+        .control-btn:hover {
+            color: var(--text-main);
+        }
+
+        .progress-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-gold);
+            width: 0%;
+            border-radius: 3px;
+        }
+
+        .time-display {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            justify-content: center;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .nav-link.highlight {
+            border-color: rgba(212, 175, 55, 0.3);
+            color: var(--accent-gold);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-bottom: 40px;
         }
 
         @keyframes fadeInDown {
@@ -459,23 +427,14 @@
             }
         }
 
-        .episode-description.collapsed {
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+        @media (max-width: 650px) {
+            h1 {
+                font-size: 2.2rem;
+            }
 
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: var(--accent-gold);
-            cursor: pointer;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            font-weight: 600;
-            text-transform: uppercase;
+            .episode-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -487,10 +446,6 @@
         <header>
             <h1>Die Villa Kunterbunt</h1>
             <div class="subtitle">Das Kompendium</div>
-            <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-                <a href="../../main/podcast/index.html" class="action-link">🏰 Das Epos</a>
-                <a href="../../cowork/podcast/index.html" class="action-link">🎧 Die Anthologie</a>
-            </div>
         </header>
 
         <article class="episode-card">
@@ -507,16 +462,13 @@
                 </div>
             </div>
 
-            <div class="episode-tag">E05 • Das Dossier</div>
-            <h2 class="episode-title">Die Strategie des radikalen Protests</h2>
+            <div class="episode-tag">Die Villa Kunterbunt Studie</div>
+            <h2 class="episode-title">E06: Die Villa Kunterbunt Studie</h2>
 
             <div class="info-bar">
                 <button id="tts-btn" class="info-btn" onclick="toggleInfo()">TTS</button>
                 <button class="info-btn"
-                    onclick="openSource('https://github.com/derlemue/villa-kunterbunt')">Repo</button>
-                <button class="info-btn"
-                    onclick="openSource('https://derlemue.github.io/villa-kunterbunt/core/data/main/documents/villa_kunterbunt_korrespondenz_epos_derlemue.pdf')">Dossier
-                    (PDF)</button>
+                    onclick="openSource('https://derlemue.github.io/villa-kunterbunt/core/data/main/documents/villa_kunterbunt_korrespondenz_epos_derlemue.pdf')">Quelle</button>
             </div>
 
             <div id="info-text" class="info-text">
@@ -532,30 +484,28 @@
             </div>
 
             <div class="episode-description collapsed" id="desc-text">
-                Was passiert, wenn ein Tech-Profi im Dunkeln sitzt und der Energieversorger nicht reagiert? Er schreibt
-                keine wütenden Mails. Er eröffnet ein GitHub-Repository.
+                Was passiert, wenn ein IT-Systemadministrator mit ausgeprägtem Hang zur Logik auf einen defekten
+                Hausanschluss und einen wortkargen Techniker trifft? Eine Eskalation epischen Ausmaßes.
                 <br><br>
-                In dieser Episode erzählen wir die unglaubliche Geschichte von "der Lume", einem Systemadministrator,
-                dessen Haus ("Villa Kunterbunt") im Januar 2026 plötzlich ohne Strom war. Anstatt in der
-                Hotline-Warteschleife zu verzweifeln, nutzte er seine IT-Skills für einen radikalen Schritt: Er
-                verlagerte seinen privaten Ärger auf die Plattform für Softwareentwicklung, GitHub.
+                In dieser Episode sezieren wir die "Villa Kunterbunt Studie" – ein Dossier, in dem ein Kunde seinen
+                privaten Stromausfall nicht als Beschwerde, sondern als wissenschaftliches Experiment über "Systemische
+                Entropie" inszeniert. Wir begleiten den Protagonisten durch drei Akte des Wahnsinns:
                 <br><br>
-                Wir analysieren seine Strategie des "Intellectual Denial of Service":
+                <strong>Akt 1: Der physikalische Bug:</strong> Phase L3 fällt aus. Der Kunde diagnostiziert das Problem
+                präzise, doch der Techniker ("Golden Boy") misst 15 Minuten, kassiert 170 Euro und hinterlässt einen
+                kalten Herd.
                 <br><br>
-                <strong>Der "Bug Report" des Lebens:</strong> Wie er einen simplen Stromausfall als komplexen
-                Systemfehler ("Bug in kritischer Infrastruktur") framte.
+                <strong>Akt 2: Telediagnostischer Schamanismus:</strong> Der Kundendienst versucht, den Fehler per
+                Ferndiagnose wegzureden ("Ruck am Kabel").
                 <br><br>
-                <strong>Die Waffe der Dokumentation:</strong> Warum ein 25-seitiges technisches Dossier wirkungsvoller
-                ist als jede Beschwerdemail.
+                <strong>Akt 3: Der FI-Beweis:</strong> Der Kunde nutzt den Testknopf des Schutzschalters, um zu
+                beweisen, dass physikalisch kein Strom fließt. Eine unwiderlegbare Logik, die am bürokratischen Prozess
+                abprallt.
                 <br><br>
-                <strong>Der "FI-Beweis":</strong> Wie er mit einem einfachen physikalischen Test
-                ("Schutzschalter-Logik") die Argumentation des Konzerns technisch widerlegte.
-                <br><br>
-                <strong>Open Source Protest:</strong> Wie er die Tech-Community mobilisierte, um öffentlichen Druck
-                aufzubauen, ohne juristisch angreifbar zu sein.
-                <br><br>
-                Eine Geschichte über die neue Machtasymmetrie: Wenn Kunden die Sprache der Systeme besser sprechen als
-                die Betreiber selbst, wird der Support-Fall zum öffentlichen Audit.
+                Wir analysieren die Strategie der "gehobenen Empörung" und das Phänomen des "Intellectual Denial of
+                Service". Wenn ein Kunde anbietet, eine verplombte Schraube selbst anzuziehen und dies als kostenlose
+                Dienstleistung framt, entlarvt er die ökonomische Absurdität künstlicher Monopole. Eine Geschichte über
+                die Macht der Dokumentation in einer Welt automatisierter Ignoranz.
             </div>
             <button class="read-more-btn" id="read-more-btn" onclick="toggleDescription()">MEHR ANZEIGEN</button>
 
@@ -565,7 +515,7 @@
                         <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" />
                     </svg>
                 </button>
-                <button class="play-btn" id="play-btn" aria-label="Play Episode">
+                <button class="play-btn" id="play-btn" aria-label="Play">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8 5v14l11-7z" />
                     </svg>
@@ -592,31 +542,26 @@
                 </div>
             </div>
 
-            <audio id="audio-player" src="../audio/villa_kunterbunt_dossier_podcast.mp3" preload="metadata"></audio>
+            <audio id="audio-player" src="../audio/villa_kunterbunt_die_studie_podcast.mp3" preload="metadata"></audio>
 
-            <div class="nav-links"
-                style="border-top: none; margin-top: 10px; padding-top: 0; display: flex; justify-content: center; flex-direction: column; gap: 10px;">
-                <div style="display: flex; justify-content: center; gap: 20px;">
-                    <a href="eon_trustpilot_podcast.html" class="nav-link">
+            <div class="nav-links">
+                <div style="display: flex; justify-content: center; gap: 20px; width: 100%;">
+                    <a href="villa_kunterbunt_dossier_podcast.html" class="nav-link">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M19 12H5M12 19l-7-7 7-7" />
                         </svg>
                         <span>Vorherige Episode</span>
                     </a>
-                    <a href="villa_kunterbunt_studie_podcast.html" class="nav-link">
+                    <button class="nav-link" disabled style="opacity: 0.5; cursor: not-allowed;">
                         <span>Nächste Episode</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
-                    </a>
+                    </button>
                 </div>
-                <div style="display: flex; justify-content: center;">
-                    <a href="index.html" class="nav-link highlight">
-                        <span>Alle Episoden</span>
-                    </a>
-                </div>
+                <a href="index.html" class="nav-link highlight">Alle Episoden</a>
             </div>
         </article>
 
@@ -633,52 +578,15 @@
     </div>
 
     <script>
-        const playIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-        const pauseIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-
         const audio = document.getElementById('audio-player');
-        const progressContainer = document.getElementById('progress-container');
+        const playBtn = document.getElementById('play-btn');
         const progressFill = document.getElementById('progress-fill');
         const currentTimeEl = document.getElementById('current-time');
         const durationEl = document.getElementById('duration');
-        const playBtn = document.getElementById('play-btn');
+        const progressContainer = document.getElementById('progress-container');
 
-        function toggleDescription() {
-            const desc = document.getElementById('desc-text');
-            const btn = document.getElementById('read-more-btn');
-            desc.classList.toggle('collapsed');
-            if (desc.classList.contains('collapsed')) {
-                btn.innerText = "MEHR ANZEIGEN";
-            } else {
-                btn.innerText = "WENIGER ANZEIGEN";
-            }
-        }
-
-        function getPersistenceKey(src) {
-            return 'vp_time_' + src.split('/').pop();
-        }
-
-        function setupPersistence(audio) {
-            const key = getPersistenceKey(audio.currentSrc || audio.src);
-            const savedTime = localStorage.getItem(key);
-            if (savedTime && !isNaN(savedTime)) audio.currentTime = parseFloat(savedTime);
-            audio.addEventListener('timeupdate', () => localStorage.setItem(key, audio.currentTime));
-        }
-
-        function setupMediaSession(audio) {
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.metadata = new MediaMetadata({
-                    title: "E05: Das Dossier",
-                    artist: "Villa Kunterbunt",
-                    album: "Das Kompendium",
-                    artwork: [
-                        { src: new URL("../images/thumbs/das_villa_kunterbunt_kompendium_audiobook_cover_front_thumb.png", window.location.href).href, sizes: '512x512', type: 'image/png' }
-                    ]
-                });
-                navigator.mediaSession.setActionHandler('play', () => audio.play());
-                navigator.mediaSession.setActionHandler('pause', () => audio.pause());
-            }
-        }
+        const playIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+        const pauseIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
         function togglePlay() {
             if (audio.paused) {
@@ -690,9 +598,12 @@
             }
         }
 
+        playBtn.addEventListener('click', togglePlay);
+
         audio.addEventListener('timeupdate', () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressFill.style.width = `${progress}%`;
+            if (isNaN(audio.duration)) return;
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = percent + '%';
             currentTimeEl.textContent = formatTime(audio.currentTime);
         });
 
@@ -706,26 +617,56 @@
             audio.currentTime = (clickX / width) * audio.duration;
         });
 
-        playBtn.addEventListener('click', togglePlay);
-
         function formatTime(seconds) {
-            const min = Math.floor(seconds / 60);
-            const sec = Math.floor(seconds % 60);
-            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
         }
 
-        function skip(seconds) { audio.currentTime += seconds; }
+        function skip(time) { audio.currentTime += time; }
         function setVolume(val) { audio.volume = val; }
 
+        function toggleDescription() {
+            const desc = document.getElementById('desc-text');
+            const btn = document.getElementById('read-more-btn');
+            const isCollapsed = desc.classList.toggle('collapsed');
+            btn.textContent = isCollapsed ? "MEHR ANZEIGEN" : "WENIGER ANZEIGEN";
+        }
+
         function toggleInfo() {
-            const infoText = document.getElementById('info-text');
-            infoText.classList.toggle('visible');
-            if (infoText.classList.contains('visible')) {
-                setTimeout(() => infoText.classList.remove('visible'), 8000);
+            const info = document.getElementById('info-text');
+            info.classList.toggle('visible');
+        }
+
+        function setupPersistence(audio) {
+            const key = 'vp_time_' + audio.src.split('/').pop();
+            const savedTime = localStorage.getItem(key);
+            if (savedTime && !isNaN(savedTime)) audio.currentTime = parseFloat(savedTime);
+            audio.addEventListener('timeupdate', () => localStorage.setItem(key, audio.currentTime));
+        }
+
+        function setupMediaSession(audio) {
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: "E06: Die Villa Kunterbunt Studie",
+                    artist: "Villa Kunterbunt",
+                    album: "Das Kompendium",
+                    artwork: [
+                        { src: new URL("../images/thumbs/das_villa_kunterbunt_kompendium_audiobook_cover_front_thumb.png", window.location.href).href, sizes: '512x512', type: 'image/png' }
+                    ]
+                });
+                navigator.mediaSession.setActionHandler('play', () => audio.play());
+                navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+                navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+                    audio.currentTime = Math.max(audio.currentTime - (details.seekOffset || 10), 0);
+                });
+                navigator.mediaSession.setActionHandler('seekforward', (details) => {
+                    audio.currentTime = Math.min(audio.currentTime + (details.seekOffset || 10), audio.duration);
+                });
             }
         }
 
-        function openSource(url) { window.open(url, '_blank'); }
+        function openSource(url) { if (url) window.open(url, '_blank'); }
 
         window.addEventListener('DOMContentLoaded', () => {
             setupPersistence(audio);
